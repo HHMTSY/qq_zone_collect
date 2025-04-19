@@ -1,0 +1,1050 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>个人中心feeds</title>
+    <base href="//qzs.qq.com/"></base>
+    <script>
+        document.domain = location.hostname;
+    </script>
+    <!--[if IE]>
+<script type="text/javascript">
+function toAbsURL(s) {
+ var l = location, h, p, f, i;
+ if (/^\w+:/.test(s)) {
+   return s;
+ }
+ h = l.protocol + '//' + l.host + (l.port!=''?(':' + l.port):'');
+ if (s.indexOf('/') == 0) {
+   return h + s;
+ }
+ p = l.pathname.replace(/\/[^\/]*$/, '');
+ f = s.match(/\.\.\//g);
+ if (f) {
+   s = s.substring(f.length * 3);
+   for (i = f.length; i--;) {
+     p = p.substring(0, p.lastIndexOf('/'));
+   }
+ }
+ return h + p + '/' + s;
+}
+
+
+var base = document.getElementsByTagName('base')[0];
+base.href = toAbsURL(base.href);
+</script>
+<![endif]-->
+    <script type="text/javascript">
+        var QZONE = {};
+        var QZFL = {};
+        QZFL.event = {};
+        QZFL.event.getEvent = function(evt) {
+            var evt = window.event || evt, c, cnt;
+            if (!evt && window.Event) {
+                c = arguments.callee;
+                cnt = 0;
+                while (c) {
+                    if ((evt = c.arguments[0]) && typeof (evt.srcElement) != "undefined") {
+                        break;
+                    } else if (cnt > 9) {
+                        break;
+                    }
+                    c = c.caller;
+                    ++cnt;
+                }
+            }
+            return evt;
+        }
+        ;
+        QZFL.event.getTarget = function(evt) {
+            var e = QZFL.event.getEvent(evt);
+            if (e) {
+                return e.srcElement || e.target;
+            } else {
+                return null;
+            }
+        }
+        ;
+        QZFL.media = {};
+        var QZFF_M_img_ribr = [];
+        QZFL.media.reduceImgByRule = function(ew, eh, opts, cb) {
+            QZFF_M_img_ribr.push(QZFL.event.getTarget());
+        }
+        ;
+        QZFL.media.adjustImageSize = function(w, h, trueSrc, cb, errCallback) {
+            QZFF_M_img_ribr.push(QZFL.event.getTarget());
+        }
+        ;
+        QZFL.media.reduceImage = function() {
+            QZFF_M_img_ribr.push(QZFL.event.getTarget());
+        }
+        ;
+        QZFL.media.smartImage = function() {
+            QZFF_M_img_ribr.push(QZFL.event.getTarget());
+        }
+        ;
+
+        function restXHTML(s) {
+            return s.replace(/&amp;|&lt;|&gt;|&apos;|&#0?39;|&quot;/g, function(a) {
+                switch (a) {
+                    case "&amp;":
+                        return "&";
+                    case "&lt;":
+                        return "<";
+                    case "&gt;":
+                        return ">";
+                    case "&apos;":
+                    case "&#39;":
+                    case "&#039;":
+                        return "\x27";
+                    case "&quot;":
+                        return "\x22";
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        var _s_ = new Date();
+        var _re = document.referrer
+            , exp = /^https?:\/\/(([\d\w-]+)(?:\.s\d\d?)?\.)?([\d\w-]+)(?:\.s\d\d?)?\.(qzone|pengyou)\.qq\.com/i
+            , exp2 = /^https?:\/\/([a-zA-Z0-9\-]+)?\.?(qzs|imgcache)\.qq\.com[\/]*#?/i;
+
+        var G_Param, g_sid, g_imgd, g_wd, g_rd, g_V;
+        if (exp.test(_re) || exp2.test(_re)) {
+            document.domain = location.hostname;
+            g_sid = parent.siDomain || parent.parent.siDomain || "qzonestyle.gtimg.cn";
+            g_sid = g_sid.replace("http://", "").replace('https://', '');
+            g_imgd = parent.imgcacheDomain || parent.parent.siDomain || "imgcache.qq.com";
+
+            g_DPrefix = parent.g_DPrefix || parent.parent.g_DPrefix || "";
+            g_rd = "r." + g_DPrefix + "qzone.qq.com";
+            g_wd = "w." + g_DPrefix + "qzone.qq.com";
+            g_imgd = g_imgd.replace("http://", "").replace('https://', '');
+            g_V = parent.g_V || parent.parent.g_V || {
+                "qz": "_2.0.7.8"
+            };
+        } else {
+            window.OUTSIDE_DOMAIN = true;
+            g_sid = "qzonestyle.gtimg.cn";
+            g_imgd = "imgcache.qq.com";
+            g_rd = "r.qzone.qq.com";
+            g_wd = "w.qzone.qq.com";
+            g_V = {
+                "qz": "_2.0.7.8"
+            };
+        }
+        if (!/\/$/.test(g_sid)) {
+            g_sid += "/";
+        }
+        function commonDictionarySplit(s, esp, vq, eq) {
+            var res = {};
+            if (!s || typeof (s) != "string") {
+                return res;
+            }
+            if (typeof (esp) != 'string') {
+                esp = "&";
+            }
+            if (typeof (vq) != 'string') {
+                vq = "";
+            }
+            if (typeof (eq) != 'string') {
+                eq = "=";
+            }
+
+            var l = s.split(vq + esp), len = l.length, tmp, t = eq + vq, p;
+
+            if (vq) {
+                tmp = l[len - 1].split(vq);
+                l[len - 1] = tmp.slice(0, tmp.length - 1).join(vq);
+            }
+
+            for (var i = 0, len; i < len; i++) {
+                if (eq) {
+                    tmp = l[i].split(t);
+                    if (tmp.length > 1) {
+                        res[tmp[0]] = tmp.slice(1).join(t);
+                        continue;
+                    }
+                }
+                res[l[i]] = true;
+            }
+            return res;
+        }
+
+        var _jsBegin = '<script type="text/javascript" charset="utf-8" src="'
+            , _jsEnd = '"><\/script>'
+            , cssBegin = '<link rel="stylesheet" rev="stylesheet" href="'
+            , cssEnd = '" type="text/css" media="screen"/>';
+
+        G_Param = commonDictionarySplit(location.search.substring(1), "&");
+        if (!G_Param) {
+            G_Param = frameElement.G_Param || {};
+        }
+        var G_Param_map = {
+            hideExtend: true,
+            style: 100,
+            DEFAULT_FEEDS_CGI: window.location.protocol + "//rsh.qzone.qq.com/cgi-bin/feeds/feeds_html_act_all",
+            i_uin: window.OUTSIDE_DOMAIN ? 0 : (parent.g_iUin || parent.parent.g_iUin || 0),
+            i_login_uin: window.OUTSIDE_DOMAIN ? 0 : (parent.g_iLoginUin || parent.parent.g_iLoginUin || 0),
+            mode: 3,
+            noOpr: true,
+            view: 1,
+            scope: 0,
+            filter: "all",
+            max: -1,
+            heightHack: parseInt(G_Param.heightHack, 10),
+            errmsg: "主人最近比较忙，没有公开的空间更新。",
+            PV_ACT_DOMAIN: "ic2act",
+            PV_DOMAIN: "ic2",
+            showbbor: false,
+            /*是否显示分割线条*/
+            showcount: 10,
+            /*每次显示条数*/
+            showmore: false,
+            /*是否显示更多按钮*/
+            version: 5 /*v5还是v6,默认是v5*/
+        };
+
+        var _feedsdata = {
+            "code": '',
+            "subcode": '',
+            "message": '',
+            "default": '',
+            "data": {
+                main: {
+                    attach: '',
+                    searchtype: '',
+                    needFold: '',
+                    icServerTime: '',
+                    icView: '',
+                    daylist: '',
+                    uinlist: '',
+                    hasMoreFeeds_0: true,
+                    foldAllHostBTNClass: '',
+                    foldAllHostBTNTitle: '',
+                    foldAllHostFeedDisplay: '',
+                    friend_more: '',
+                    host_more: '',
+                    aboutHostFeeds_new_cnt: '',
+                    replyHostFeeds_new_cnt: '',
+                    myFeeds_new_cnt: '',
+                    friendFeeds_new_cnt: '',
+                    newfeeds_uinlist: '',
+                    newfeeds_uinlist_more: '',
+                    newfeeds_special_cnt: '',
+                    newfeeds_friend_cnt: '',
+                    newfeeds_follow_cnt: '',
+                    newfeeds_group_cnt: '',
+                    tips: '',
+                    feedstips: '',
+                    js_showtips: '',
+                    lastaccesstime: '',
+                    lastAccessRelateTime: '',
+                    QzoneFeedsKey: '',
+                    offset: '10',
+                    total_number: '3'
+                },
+                firstpage_data: [
+                    {
+                        ver: '1',
+                        appid: '311',
+                        typeid: '0',
+                        key: 'fc02d3c1f297f760fde90900',
+                        flag: '0',
+                        dataonly: '0',
+                        feedno: '0',
+                        title: '',
+                        summary: '',
+                        appiconid: '311',
+                        clscFold: 'icenter_list_extend',
+                        abstime: '1626839026',
+                        feedstime: '2021年7月21日 11:43',
+                        userHome: 'http://user.qzone.qq.com/3251831548',
+                        namecardLink: 'nameCard_3251831548',
+                        ouin: '',
+                        uin: '3251831548',
+                        foldFeed: '',
+                        foldFeedTitle: '',
+                        showEbtn: '',
+                        scope: '0',
+                        hideExtend: '',
+                        nickname: '黎云洪',
+                        remark: '',
+                        type: '',
+                        vip: 'vip_0',
+                        info_user_name: '',
+                        logimg: 'http://qlogo1.store.qq.com/qzone/3251831548/3251831548/50?1631763947',
+                        bor: '',
+                        lastFeedBor: '',
+                        list_bor2: '',
+                        info_user_display: '',
+                        upernum: '',
+                        oprType: '0',
+                        moreflag: '',
+                        otherflag: '0_0_0_0_0_0_0',
+                        sameuser: {},
+                        uper_isfriend: [],
+                        uperlist: []
+                    },
+                    {
+                        ver: '1',
+                        appid: '311',
+                        typeid: '5',
+                        key: 'fc02d3c16dd13060780d0200',
+                        flag: '0',
+                        dataonly: '0',
+                        feedno: '1',
+                        title: '',
+                        summary: '',
+                        appiconid: '311',
+                        clscFold: 'icenter_list_extend',
+                        abstime: '1613812077',
+                        feedstime: '2021年2月20日 17:07',
+                        userHome: 'http://user.qzone.qq.com/3251831548',
+                        namecardLink: 'nameCard_3251831548',
+                        ouin: '',
+                        uin: '3251831548',
+                        foldFeed: '',
+                        foldFeedTitle: '',
+                        showEbtn: '',
+                        scope: '0',
+                        hideExtend: '',
+                        nickname: '黎云洪',
+                        remark: '',
+                        type: '',
+                        vip: 'vip_0',
+                        info_user_name: '',
+                        logimg: 'http://qlogo1.store.qq.com/qzone/3251831548/3251831548/50?1631763947',
+                        bor: '',
+                        lastFeedBor: '',
+                        list_bor2: '',
+                        info_user_display: '',
+                        upernum: '',
+                        oprType: '0',
+                        moreflag: '',
+                        otherflag: '0_0_0_0_0_0_0',
+                        sameuser: {},
+                        uper_isfriend: [],
+                        uperlist: []
+                    },
+                    {
+                        ver: '1',
+                        appid: '4',
+                        typeid: '0',
+                        key: '1608721286877V54gQ6i31DgoDb2bz1',
+                        flag: '0',
+                        dataonly: '0',
+                        feedno: '2',
+                        title: '',
+                        summary: '',
+                        appiconid: '4',
+                        clscFold: 'icenter_list_extend',
+                        abstime: '1608721287',
+                        feedstime: '2020年12月23日 19:01',
+                        userHome: 'http://user.qzone.qq.com/3251831548',
+                        namecardLink: 'nameCard_3251831548',
+                        ouin: '',
+                        uin: '3251831548',
+                        foldFeed: '',
+                        foldFeedTitle: '',
+                        showEbtn: '',
+                        scope: '0',
+                        hideExtend: '',
+                        nickname: '黎云洪',
+                        remark: '',
+                        type: '',
+                        vip: 'vip_0',
+                        info_user_name: '',
+                        logimg: 'http://qlogo1.store.qq.com/qzone/3251831548/3251831548/50?1631763947',
+                        bor: '',
+                        lastFeedBor: '',
+                        list_bor2: '',
+                        info_user_display: '',
+                        upernum: '',
+                        oprType: '0',
+                        moreflag: '',
+                        otherflag: '0_0_0_0_0_0_0',
+                        sameuser: {},
+                        uper_isfriend: [],
+                        uperlist: []
+                    },
+                    undefined]
+            }
+        };
+
+        for (var k in G_Param_map) {
+            if (typeof (G_Param[k]) == "undefined") {
+                G_Param[k] = G_Param_map[k];
+            }
+        }
+        if ((G_Param.style + "").indexOf("v6/") == 0) {
+            G_Param.version = 6;
+            G_Param.style = (G_Param.style + "").replace("v6/", "");
+        }
+        if (G_Param.MORE_FEEDS_CGI) {
+            G_Param.MORE_FEEDS_CGI = decodeURIComponent(G_Param.MORE_FEEDS_CGI);
+        }
+
+        /*这里特殊默认值的判断*/
+        if (typeof (G_Param.hideExtend) == "string") {
+            G_Param.hideExtend = (G_Param.hideExtend != "false");
+        }
+
+        if (typeof (G_Param.mode) == "undefined" || isNaN(parseInt(G_Param.mode, 10))) {
+            G_Param.mode = 1;
+        }
+
+        if (typeof (G_Param.style) == "undefined" || isNaN(parseInt(G_Param.style, 10))) {
+            G_Param.style = 100;
+        } else {
+            G_Param.style = parseInt(G_Param.style, 10);
+        }
+
+        G_Param.CSSQueue = [];
+        if (G_Param.version == 8) {
+            G_Param.CSSQueue.push([cssBegin, window.location.protocol, '//', g_sid, 'aoi/skin/', G_Param.style, '.css" id="qz_skin_style', cssEnd].join(""));
+        } else if (G_Param.version == 6) {
+            G_Param.CSSQueue.push(([cssBegin, window.location.protocol, '//', g_sid, 'qzone_v6/gb/skin/', G_Param.style, '.css', cssEnd]).join(""));
+        }
+
+        if (typeof (G_Param.needDelOpr) == "string") {
+            G_Param.needDelOpr = (G_Param.needDelOpr != "false");
+        }
+        var tmp_begin = '<li class="f_single imgBlock bor2"><div class="f_aside imgBlock_img"><qz:user param=\'<%userHome%>|<%logimg%>|<%namecardLink%>|<%info_user_name%>||<%vip%>|<%type%>|<%uin%>|<%ouin%>|<%otherflag%>\' nick=\'<%nickname%>\'></qz:user></div><div class="f_wrap imgBlock_ct">'
+            , tmp_end = '</div></li>'
+            , host_tmp = '<div class="f_item" link="0" id="feed_<%uin%>_<%appid%>_<%typeid%>_<%abstime%>_<%feedno%>_<%scope%>_<%ver%>" ><div class="f_info"><a target="_blank" href="http://' + location.hostname + '/<%uin%>/profile" class="nickname q_namecard c_tx q_des ui_mr5" link="nameCard_<%uin%> des_<%uin%>"><%nickname%></a><%famouslogo%><%title%></div><div class="qz_summary" id="hex_<%appid%>_<%abstime%>_<%uin%>_<%scope%>"><%summary%></div><div class="f_op" id="opr_<%uin%>_<%appid%>_<%typeid%>_<%abstime%>_<%feedno%>"><qz:fo class="<%foldFeed%>" title="<%foldFeedTitle%>" param="<%appid%>|<%abstime%>|<%ouin%>|<%typeid%>|<%feedno%>|<%feedstime%>|<%showEbtn%>|<%scope%>|<%oprType%>|<%key%>|<%otherflag%>|<%rightflag%>|<%ver%>"></qz:fo></div></div>'
+            , friend_tmp = '<div class="f_item" link="1" id="feed_<%uin%>_<%appid%>_<%typeid%>_<%abstime%>_<%feedno%>_<%scope%>_<%ver%>" ><div class="f_info"><a target="_blank" href="http://' + location.hostname + '/<%uin%>/profile" class="nickname q_namecard c_tx q_des ui_mr5" link="nameCard_<%uin%> des_<%uin%>"><%nickname%></a><%famouslogo%><%title%></div><div class="qz_summary" id="hex_<%appid%>_<%abstime%>_<%uin%>_<%scope%>"><%summary%></div><div class="f_op"  ' + (G_Param.hideExtend ? 'style="display:none"' : '') + ' id="opr_<%uin%>_<%appid%>_<%typeid%>_<%abstime%>_<%feedno%>"><qz:fo class="<%foldFeed%>" title="<%foldFeedTitle%>" param="<%appid%>|<%abstime%>|<%uin%>|<%typeid%>|<%feedno%>|<%feedstime%>|<%showEbtn%>|<%scope%>|<%oprType%>|<%key%>|<%otherflag%>|<%rightflag%>|<%ver%>"></qz:fo></div></div>';
+
+        var _cssSuffix = '';
+        if (top.window.g_isGrayRelease) {
+            _cssSuffix = '-v9';
+        }
+        var coreCSSQueue = [cssBegin, 'https://qzonestyle.gtimg.cn/qzone_v5/app/app_icon.css', cssEnd, /*TODO 这个样式是不是需要去掉?*/
+            cssBegin, 'https://qzonestyle.gtimg.cn/', ('aoi/old-feed' + _cssSuffix + '.css'), cssEnd, cssBegin, 'https://qzonestyle.gtimg.cn/', ('aoi/feed-home' + _cssSuffix + '.css'), cssEnd];
+        coreCSSQueue = coreCSSQueue.concat(G_Param.CSSQueue);
+
+        document.write(coreCSSQueue.join(''));
+    </script>
+</head>
+<body class="ifeeds_body os-winxp mode_bg_opacity100" data-opacity="100" onload="bodyonload();">
+<div class="ifeeds feed feed-v9 feed-home" id="ifeedsContainer">
+    <div id="ifeedsMode" class="feed_avaIcon_4 feed-inner feeds_style_4">
+        <ul id="host_home_feeds">
+            <li class="f-single f-s-s" id="fct_3251831548_311_0_1626839026_0_1">
+                <div class="f-single-head f-aside">
+                    <div class="f-adorn-top"></div>
+                    <div class="user-pto">
+                        <a href="http://user.qzone.qq.com/3251831548" target="_blank" class="user-avatar q_namecard f-s-a" link="nameCard_3251831548" data-clicklog="avatar">
+                            <img src="https://qlogo1.store.qq.com/qzone/3251831548/3251831548/50?1631763947">
+                        </a>
+                    </div>
+                    <div class="user-op">
+                        <a href="javascript:;" class="arrow-down" data-cmd="qz_opr_more" data-moreoperate="1">
+                            <i class="fui-icon icon-arrow-down"></i>
+                        </a>
+                    </div>
+                    <div class="user-info">
+                        <div class="f-nick">
+                            <a target="_blank" href="http://user.qzone.qq.com/3251831548" data-clicklog="nick" class="f-name q_namecard " link="nameCard_3251831548">黎云洪</a>
+                        </div>
+                        <div class="info-detail">
+                            <span class=" ui-mr8 state">2021年7月21日 11:43</span>
+                            <a href="javascript:;" data-cmd="qz_sign" class="f-sign-show state" title="我也要设置"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-single-content f-wrap">
+                    <div class="f-item f-s-i" id="feed_3251831548_311_0_1626839026_0_1" data-feedsflag="" data-iswupfeed="1" data-key="fc02d3c1f297f760fde90900" data-specialtype="" data-extend-info="0_0_0_0_0_0_0|08009c8002024201|1000000000000000" data-functype="" data-hasfollowed="1">
+                        <div class="f-info">
+                            <img src="http://qzonestyle.gtimg.cn/qzone/em/e400256.gif" title=""/>
+                            <img src="http://qzonestyle.gtimg.cn/qzone/em/e400256.gif" title=""/>
+                            <img src="http://qzonestyle.gtimg.cn/qzone/em/e400256.gif" title=""/>
+                            <br/>
+                            冠军咯冠军咯<br/>字母永远的怪兽
+                        </div>
+                        <div class="qz_summary wupfeed" id="hex_3251831548_311_0_1626839026_0_1">
+                            <i class="none" name="feed_data" data-bitmap="08009c8002024201" data-yybitmap="1000000000000000" data-vipstarbitmap="1100120000000c80" data-fkey="fc02d3c1f297f760fde90900" data-tid="fc02d3c1f297f760fde90900" data-uin="3251831548" data-origfkey="" data-origtid="fc02d3c1f297f760fde90900" data-origuin="3251831548" data-subid="" data-totweet="" data-issignin="" data-source="" data-retweetcount="0" data-stat="exNDgYmCtvhk5z4wcG/!Y6IS3Soq1kbpPg0GBp3zpWcPntU8UQ9SKo/OJNmRHHJda1fh26U!kKje2JvDmqxigKh6T3dotP5OPg0GBp3zpWcPntU8UQ9SKkIHyOpQh/DO4IUNPyuwzVw6Kr6tRARxESRR9qzp2sbEO6nNUN7czWzXx0jH7nz30FxXKFdLsY2AMzAkbzg1AwIBTuLRjZ4jBU1cmgjK6VWa_" data-topicid="3251831548_fc02d3c1f297f760fde90900__1" data-feedstype="100" data-abstime="1626839026" data-iswupfeed="1" data-platformid="52" data-accessright="1"></i>
+                            <div class="f-ct ">
+                                <div class="f-ct-txtimg fui-txtimg  ">
+                                    <div class="txt-box "></div>
+                                    <div class="img-box ">
+                                        <a class="img-item  " data-cmd="qz_popup" href="https://user.qzone.qq.com/3251831548/311/" class="  qz_ichotclick   with-sign  " data-topicid="3251831548_fc02d3c1f297f760fde90900__1" data-pickey="fc02d3c1f297f760fde90900,http://photogz.photo.store.qq.com/psc?/V11nL3ng2JJshw/ruAMsa53pVQWN7FLK88i5jh004YLO4OMTgbgIGKG2T24PQaF5cFBZaDRd4QFojhXTMdmibJpVoHuB6K9WQdYYcRmCveFY87RYdTaNAQ3mk4!/b&amp;bo=lgUOA5YFDgMDEDU!" data-clicklog="pic" data-originurl="||" hotclickPath="0_appid_311_v8.pic_count_1.pic_0" hotdomain="icv6act.qzone.qq.com" data-weishi_feedid="" data-version="2" data-param="fc02d3c1f297f760fde90900|3251831548|0" data-src="/qzone/photo/zone/icenter_popup.html" data-width="1430" data-height="782" data-type="popup" data-title="" data-config="" data-extendinfo1="" data-extendinfo2="" data-extendinfo3="" data-extendinfo4="" data-extendinfo11="">
+                                            <img src="http://a1.qpic.cn/psc?/V11nL3ng2JJshw/ruAMsa53pVQWN7FLK88i5jh004YLO4OMTgbgIGKG2T24PQaF5cFBZaDRd4QFojhXTMdmibJpVoHuB6K9WQdYYcRmCveFY87RYdTaNAQ3mk4!/b&amp;ek=1&amp;kp=1&amp;pt=0&amp;bo=lgUOA5YFDgMDEDU!&amp;tl=1&amp;vuin=768366296&amp;tm=1724853600&amp;dis_t=1724854194&amp;dis_k=67101973b6f4075e8d2c6cc36de7833a&amp;sce=60-1-1&amp;rf=0-0" style="height:305px;width:560px;"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="f-reprint">
+                                    <p class="item">
+                                        <i class="fui-icon icon-print-phone"></i>
+                                        <span class="ui-mr8 state">
+                                                    来自 &nbsp;<a href="http://z.qzone.com?from=androidgrzxpl" target="_blank" class=" phone-style state">华为畅享9 Plus</a>
+                                                    &nbsp;
+                                                </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-single-foot">
+                    <div class="f-op-detail f-detail content-line">
+                        <p class="op-list">
+                            <a class="item qz_retweet_btn " href="javascript:;" data-cmd="qz_popup" data-version="4" data-isnewtype="1" data-type="ForwardingBox" data-src="/qzone/app/controls/forwardingBox/forwardingBoxFacade.js" data-clicklog="retweet">
+                                <i class="fui-icon icon-op-share"></i>
+                            </a>
+                            <span class="item-line"></span>
+                            &nbsp;
+                            <a href="javascript:;" data-version="6.3" data-cmd="qz_reply" data-link="1" data-clicklog="comment" class=" qz_btn_reply item ">
+                                <i class="fui-icon icon-op-comment"></i>
+                            </a>
+                            &nbsp;<span class="item-line"></span>
+                            <a class="item qz_like_btn_v3 " data-islike="0" data-likecnt="29" data-showcount="20" data-unikey="http://user.qzone.qq.com/3251831548/mood/fc02d3c1f297f760fde90900" data-curkey="http://user.qzone.qq.com/3251831548/mood/fc02d3c1f297f760fde90900" data-clicklog="like" href="javascript:;">
+                                <i class="fui-icon icon-op-praise"></i>
+                            </a>
+                        </p>
+                        <a href="javascript:;" class="state qz_feed_plugin" data-role="Visitor" data-config="311|fc02d3c1f297f760fde90900|3251831548" data-clicklog="visitor">浏览133次</a>
+                    </div>
+                    <div class="f-ang-t"></div>
+                    <div class="f-like-list f-like _likeInfo" likeinfo="29">
+                        <div class="icon-btn">
+                            <a href="javascript:;" data-islike="0" data-likecnt="29" data-showcount="29" data-unikey="http://user.qzone.qq.com/3251831548/mood/fc02d3c1f297f760fde90900" data-curkey="http://user.qzone.qq.com/3251831548/mood/fc02d3c1f297f760fde90900" data-clicklog="like" class="praise qz_like_prase">
+                                <i class="fui-icon icon-list-praise"></i>
+                            </a>
+                            <div class="bubble" style="display:none;">
+                                <div class="bd">+1</div>
+                                <b class="arrow arrow-down"></b>
+                            </div>
+                        </div>
+                        <div class="user-list">
+                            <a href="http://user.qzone.qq.com/2243398942" class="item q_namecard" target="_blank" link="nameCard_2243398942 des_2243398942">。</a>
+                            、<a href="http://user.qzone.qq.com/870604561" class="item q_namecard" target="_blank" link="nameCard_870604561 des_870604561">୧⍤⃝魔এ᭄杰ꦿ星꧔</a>
+                            、<a href="http://user.qzone.qq.com/1020185450" class="item q_namecard" target="_blank" link="nameCard_1020185450 des_1020185450">辛识</a>
+                            、<a href="http://user.qzone.qq.com/1054081877" class="item q_namecard" target="_blank" link="nameCard_1054081877 des_1054081877">C</a>
+                            、
+                            <a href="http://user.qzone.qq.com/1137452389" class="item q_namecard" target="_blank" link="nameCard_1137452389 des_1137452389">
+                                <img src="http://qzonestyle.gtimg.cn/qzone/em/e328081.gif" title=""/>
+                            </a>
+                            、<a href="http://user.qzone.qq.com/1143777069" class="item q_namecard" target="_blank" link="nameCard_1143777069 des_1143777069">Shylie</a>
+                            、<a href="http://user.qzone.qq.com/1207224970" class="item q_namecard" target="_blank" link="nameCard_1207224970 des_1207224970">m</a>
+                            、<a href="http://user.qzone.qq.com/1334717650" class="item q_namecard" target="_blank" link="nameCard_1334717650 des_1334717650">37.2°C</a>
+                            、
+                            <a href="http://user.qzone.qq.com/1434762964" class="item q_namecard" target="_blank" link="nameCard_1434762964 des_1434762964">
+                                YONG~<img src="http://qzonestyle.gtimg.cn/qzone/em/e328051.gif" title=""/>
+                                <img src="http://qzonestyle.gtimg.cn/qzone/em/e328051.gif" title=""/>
+                            </a>
+                            、<a href="http://user.qzone.qq.com/1443701431" class="item q_namecard" target="_blank" link="nameCard_1443701431 des_1443701431">销烟弥蛮</a>
+                            、<a href="http://user.qzone.qq.com/1911862543" class="item q_namecard" target="_blank" link="nameCard_1911862543 des_1911862543">小奈</a>
+                            、<a href="http://user.qzone.qq.com/2011476235" class="item q_namecard" target="_blank" link="nameCard_2011476235 des_2011476235">ৡ烟花易冷ོꦿ࿐</a>
+                            、<a href="http://user.qzone.qq.com/2114388502" class="item q_namecard" target="_blank" link="nameCard_2114388502 des_2114388502">天天都想睡觉</a>
+                            、
+                            <a href="http://user.qzone.qq.com/2132376694" class="item q_namecard" target="_blank" link="nameCard_2132376694 des_2132376694">
+                                <img src="http://qzonestyle.gtimg.cn/qzone/em/e328171.gif" title=""/>
+                                JH &amp;ling<img src="http://qzonestyle.gtimg.cn/qzone/em/e258158.gif" title=""/>
+                            </a>
+                            、<a href="http://user.qzone.qq.com/2138232072" class="item q_namecard" target="_blank" link="nameCard_2138232072 des_2138232072">爱学习的崽（胡广生）</a>
+                            、<a href="http://user.qzone.qq.com/2276091889" class="item q_namecard" target="_blank" link="nameCard_2276091889 des_2276091889">居住在玫瑰星云的浪漫间谍</a>
+                            、<a href="http://user.qzone.qq.com/2291493013" class="item q_namecard" target="_blank" link="nameCard_2291493013 des_2291493013">多喝热水少喝冰</a>
+                            、<a href="http://user.qzone.qq.com/2312090257" class="item q_namecard" target="_blank" link="nameCard_2312090257 des_2312090257">Lemon</a>
+                            、<a href="http://user.qzone.qq.com/2638239663" class="item q_namecard" target="_blank" link="nameCard_2638239663 des_2638239663">山崎</a>
+                            、<a href="http://user.qzone.qq.com/2763402648" class="item q_namecard" target="_blank" link="nameCard_2763402648 des_2763402648">自由如风</a>
+                            等<span class="f-like-cnt">29</span>
+                            人觉得很赞
+                        </div>
+                    </div>
+                    <div class="mod-comments" style="padding:0">
+                        <div class="comments-list ">
+                            <ul>
+                                <li class="comments-item bor3" data-type="commentroot" data-tid="1" data-uin="3503361902" data-nick="韋遠咲" data-who="1">
+                                    <div class="comments-item-bd">
+                                        <div class="single-reply">
+                                            <div class="ui-avatar">
+                                                <a href="http://user.qzone.qq.com/3503361902" target="_blank">
+                                                    <img class="q_namecard" link="nameCard_3503361902 des_3503361902" alt="韋遠咲" src="http://qlogo3.store.qq.com/qzone/3503361902/3503361902/30"/>
+                                                </a>
+                                            </div>
+                                            <div class="comments-content">
+                                                <a class="nickname name c_tx q_namecard" link="nameCard_3503361902" target="_blank" href="http://user.qzone.qq.com/3503361902">韋遠咲</a>
+                                                &nbsp;: championship<img src="http://qzonestyle.gtimg.cn/qzone/em/e400256.gif" title=""/>
+                                                <img src="http://qzonestyle.gtimg.cn/qzone/em/e400256.gif" title=""/>
+                                                <div class="comments-op">
+                                                    <span class=" ui-mr10 state">2021年7月21日 12:00</span>
+                                                    <a class="act-reply none" href="javascript:;" data-cmd="qz_reply" data-version="6.4" data-action="http://taotao.qq.com/cgi-bin/emotion_cgi_re_feeds" data-param="t1_source=&amp;t1_uin=3251831548&amp;t1_tid=fc02d3c1f297f760fde90900&amp;t2_uin=3503361902&amp;t2_tid=1&amp;subdotype=55802&amp;signin=0&amp;sceneid=100" data-charset="utf-8" data-tuin="" data-config="1|1|1|0|1,taotaoact.qzone.qq.com,@InputReply|1,taotaoact.qzone.qq.com,@ClickReply|1,taotaoact.qzone.qq.com,commentPresentClick">
+                                                        <b class="hide-clip">回复</b>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comments-list mod-comments-sub">
+                                            <ul>
+                                                <li class="comments-item bor3" data-type="replyroot" data-tid="1" data-uin="3251831548" data-nick="黎云洪" data-who="1">
+                                                    <div class="comments-item-bd">
+                                                        <div class="single-reply">
+                                                            <div class="ui-avatar">
+                                                                <a href="http://user.qzone.qq.com/3251831548" target="_blank">
+                                                                    <img class="q_namecard" link="nameCard_3251831548 des_3251831548" alt="黎云洪" src="http://qlogo1.store.qq.com/qzone/3251831548/3251831548/30?1631763947"/>
+                                                                </a>
+                                                            </div>
+                                                            <div class="comments-content">
+                                                                <a class="nickname name c_tx q_namecard" link="nameCard_3251831548" target="_blank" href="http://user.qzone.qq.com/3251831548">黎云洪</a>
+                                                                &nbsp;回复<a class="nickname name c_tx q_namecard" link="nameCard_3503361902" target="_blank" href="http://user.qzone.qq.com/3503361902">韋遠咲</a>
+                                                                &nbsp;: championship<img src="http://qzonestyle.gtimg.cn/qzone/em/e400256.gif" title=""/>
+                                                                <div class="comments-op">
+                                                                    <span class=" ui-mr10 state">2021年7月21日 12:01</span>
+                                                                    <a class="act-reply none" href="javascript:;" data-cmd="qz_reply" data-version="6.4" data-action="http://taotao.qq.com/cgi-bin/emotion_cgi_re_feeds" data-param="t1_source=&amp;t1_uin=3251831548&amp;t1_tid=fc02d3c1f297f760fde90900&amp;t2_uin=3503361902&amp;t2_tid=1&amp;subdotype=55802&amp;signin=0&amp;sceneid=100" data-charset="utf-8" data-tuin="" data-config="1|1|1|0|1,taotaoact.qzone.qq.com,@InputReply|1,taotaoact.qzone.qq.com,@ClickReply|1,taotaoact.qzone.qq.com,commentPresentClick">
+                                                                        <b class="hide-clip">回复</b>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mod-commnets-poster feedClickCmd comment_default_inputentry" data-cmd="qz_reply" data-version="6" data-action="http://taotao.qq.com/cgi-bin/emotion_cgi_re_feeds" data-param="t1_source=&amp;t1_uin=3251831548&amp;t1_tid=fc02d3c1f297f760fde90900&amp;signin=0&amp;sceneid=100" data-charset="utf-8" data-maxLength="" data-tuin="3251831548" data-config="1|1|1|1,b52,with_fwd,同时转发;0|1,taotaoact.qzone.qq.com,@InputReply|1,taotaoact.qzone.qq.com,@ClickReply|1,taotaoact.qzone.qq.com,commentPresentClick" data-tid="">
+                            <div class="comments-poster-bd comments-poster-default">
+                                <div class="comments-box" data-clicklog="comment">
+                                    <div class="textinput textinput-default bor2" contenteditable="true" alt="replybtn" placeholder="评论">
+                                        <a class="c_tx3" href="javascript:void(0);" alt="replybtn">评论</a>
+                                    </div>
+                                    <div class="mod-insert-img">
+                                        <a href="javascript:;" data-cmd="qz_quick_upload_img" class="btn-insert-img bg">
+                                            <i class="icon-camera-16"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="f-single f-s-s" id="fct_3251831548_311_5_1613812077_0_1">
+                <div class="f-single-head f-aside">
+                    <div class="f-adorn-top"></div>
+                    <div class="user-pto">
+                        <a href="http://user.qzone.qq.com/3251831548" target="_blank" class="user-avatar q_namecard f-s-a" link="nameCard_3251831548" data-clicklog="avatar">
+                            <img src="https://qlogo1.store.qq.com/qzone/3251831548/3251831548/50?1631763947">
+                        </a>
+                    </div>
+                    <div class="user-op">
+                        <a href="javascript:;" class="arrow-down" data-cmd="qz_opr_more" data-moreoperate="1">
+                            <i class="fui-icon icon-arrow-down"></i>
+                        </a>
+                    </div>
+                    <div class="user-info">
+                        <div class="f-nick">
+                            <a target="_blank" href="http://user.qzone.qq.com/3251831548" data-clicklog="nick" class="f-name q_namecard " link="nameCard_3251831548">黎云洪</a>
+                        </div>
+                        <div class="info-detail">
+                            <span class=" ui-mr8 state">2021年2月20日 17:07</span>
+                            <a href="javascript:;" data-cmd="qz_sign" class="f-sign-show state" title="我也要设置"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-single-content f-wrap">
+                    <div class="f-item f-s-i" id="feed_3251831548_311_5_1613812077_0_1" data-feedsflag="" data-iswupfeed="1" data-key="fc02d3c16dd13060780d0200" data-specialtype="" data-extend-info="0_0_0_0_0_0_0|08009c8002024201|1000000000000000" data-functype="" data-hasfollowed="1">
+                        <div class="f-info">Take your time</div>
+                        <div class="qz_summary wupfeed" id="hex_3251831548_311_5_1613812077_0_1">
+                            <i class="none" name="feed_data" data-bitmap="08009c8002024201" data-yybitmap="1000000000000000" data-vipstarbitmap="1100120000000c80" data-fkey="fc02d3c16dd13060780d0200" data-tid="fc02d3c16dd13060780d0200" data-uin="3251831548" data-origfkey="" data-origtid="84035c14201f2f60c19a0700" data-origuin="341574532" data-subid="" data-totweet="" data-issignin="" data-source="" data-retweetcount="0" data-stat="AYI6eycxCidk5z4wcG/!Y6IS3Soq1kbphveAE2LXUjqRlrvf!XPO3ixUaapUI0FXa1fh26U!kKje2JvDmqxigKh6T3dotP5OhveAE2LXUjqRlrvf!XPO3gORN3WeE!R54IUNPyuwzVzUvj0q08TOmWTnPjBwb/5jujmpwrmC197GflltA9fradigo!GL7R!GNV36G1pQ39IHUSxBvP3rV7xtHLRbr8X5/va4THACrdmHQl1547!7vKAm0Z6CbcUsScACru71dxdQUbbUUeXlCRrl8M/cXx4p_" data-topicid="3251831548_fc02d3c16dd13060780d0200__1" data-feedstype="100" data-abstime="1613812077" data-iswupfeed="1" data-platformid="50" data-accessright="1"></i>
+                            <div class="f-ct ">
+                                <div class="f-ct-txtimg fui-txtimg f-ct-video  fui-txtimg fui-txtimg-bg ">
+                                    <div class="txt-box ">
+                                        <a class="nickname name c_tx  q_namecard" link="nameCard_341574532" target="_blank" href="http://user.qzone.qq.com/341574532">快快乐乐的和最爱的人生活</a>
+                                        &nbsp;<span class=" state">：</span>
+                                        慢慢来，相信一切美好的事情即将发生
+                                    </div>
+                                    <div class="img-box f-video-wrap play" url3="http://imgcache.qq.com/tencentvideo_v1/player/TPQzone.swf?vid=j3228se2b9n&amp;skin=http%3A%2F%2Fimgcache.qq.com%2Fminivideo_v1%2Fvd%2Fres%2Fskins%2FQzoneMiniSkin.swf">
+                                        <a class="img-item  " data-cmd="qz_popup" href="https://user.qzone.qq.com/341574532/311/j3228se2b9n" data-v_itemid="j3228se2b9n" data-v_type="2" data-v_picinfo_url="https://puui.qpic.cn/vpic/0/j3228se2b9n_160_90_3.jpg/0" data-v_picinfo_width="160" data-v_picinfo_height="90" data-v_vidiourl="http://imgcache.qq.com/tencentvideo_v1/player/TPQzone.swf?vid=j3228se2b9n&skin=http%3A%2F%2Fimgcache.qq.com%2Fminivideo_v1%2Fvd%2Fres%2Fskins%2FQzoneMiniSkin.swf" data-v_vidioswfurl="http://imgcache.qq.com/tencentvideo_v1/player/TPQzone.swf?vid=j3228se2b9n&skin=http%3A%2F%2Fimgcache.qq.com%2Fminivideo_v1%2Fvd%2Fres%2Fskins%2FQzoneMiniSkin.swf" data-v_h265="http://imgcache.qq.com/tencentvideo_v1/player/TPQzone.swf?vid=j3228se2b9n&skin=http%3A%2F%2Fimgcache.qq.com%2Fminivideo_v1%2Fvd%2Fres%2Fskins%2FQzoneMiniSkin.swf" data-v_source_website="" data-v_writefrom="7" data-videotype="mood" data-clicklog="video" hotclickPath="" hotdomain="" data-weishi_feedid="" data-version="3" data-param="3&amp;videosrc=http%3A%2F%2Fimgcache.qq.com%2Ftencentvideo_v1%2Fplayer%2FTPQzone.swf%3Fvid%3Dj3228se2b9n%26skin%3Dhttp%253A%252F%252Fimgcache.qq.com%252Fminivideo_v1%252Fvd%252Fres%252Fskins%252FQzoneMiniSkin.swf&amp;type=2&amp;org_vidio_url=http%3A%2F%2Fimgcache.qq.com%2Ftencentvideo_v1%2Fplayer%2FTPQzone.swf%3Fvid%3Dj3228se2b9n%26skin%3Dhttp%253A%252F%252Fimgcache.qq.com%252Fminivideo_v1%252Fvd%252Fres%252Fskins%252FQzoneMiniSkin.swf" data-src="/qzone/app/mood/richinfo_view.html" data-width="0" data-height="" data-type="popup" data-title="" data-config="" data-extendinfo1="" data-extendinfo2="" data-extendinfo3="" data-extendinfo4="" data-extendinfo11="">
+                                            <div class="video-img">
+                                                <i class="inner icon-media-play"></i>
+                                                <img alt="视频缩略图" style="object-fit: contain; max-width:560px; max-height:560px; width:100%; height: 100%; margin: " src="http://puui.qpic.cn/qqvideo/0/j3228se2b9n/0"/>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="f-reprint">
+                                    <p class="item">
+                                        <i class="fui-icon icon-print-phone"></i>
+                                        <span class="ui-mr8 state">
+                                                    来自 &nbsp;<a href="http://z.qzone.com?from=androidgrzxpl" target="_blank" class=" phone-style state">华为畅享9 Plus (4G)</a>
+                                                    &nbsp;
+                                                </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-single-foot">
+                    <div class="f-op-detail f-detail ">
+                        <p class="op-list">
+                            <a class="item qz_retweet_btn " href="javascript:;" data-cmd="qz_popup" data-version="4" data-isnewtype="1" data-type="ForwardingBox" data-src="/qzone/app/controls/forwardingBox/forwardingBoxFacade.js" data-clicklog="retweet">
+                                <i class="fui-icon icon-op-share"></i>
+                            </a>
+                            <span class="item-line"></span>
+                            &nbsp;
+                            <a href="javascript:;" data-version="6.3" data-cmd="qz_reply" data-link="1" data-clicklog="comment" class=" qz_btn_reply item ">
+                                <i class="fui-icon icon-op-comment"></i>
+                            </a>
+                            &nbsp;<span class="item-line"></span>
+                            <a class="item qz_like_btn_v3 " data-islike="0" data-likecnt="19" data-showcount="0" data-unikey="http://user.qzone.qq.com/341574532/mood/84035c14201f2f60c19a0700" data-curkey="http://user.qzone.qq.com/3251831548/mood/fc02d3c16dd13060780d0200" data-clicklog="like" href="javascript:;">
+                                <i class="fui-icon icon-op-praise"></i>
+                            </a>
+                        </p>
+                        <a href="javascript:;" class="state qz_feed_plugin" data-role="Visitor" data-config="311|fc02d3c16dd13060780d0200|3251831548" data-clicklog="visitor">浏览24次</a>
+                    </div>
+                    <div class="f-like-list f-like _likeInfo" likeinfo="19">
+                        <div class="icon-btn">
+                            <a href="javascript:;" data-islike="0" data-likecnt="19" data-showcount="19" data-unikey="http://user.qzone.qq.com/341574532/mood/84035c14201f2f60c19a0700" data-curkey="http://user.qzone.qq.com/3251831548/mood/fc02d3c16dd13060780d0200" data-clicklog="like" class="praise qz_like_prase">
+                                <i class="fui-icon icon-list-praise"></i>
+                            </a>
+                            <div class="bubble" style="display:none;">
+                                <div class="bd">+1</div>
+                                <b class="arrow arrow-down"></b>
+                            </div>
+                        </div>
+                        <div class="user-list">
+                            <span class="f-like-cnt">19人觉得很赞</span>
+                        </div>
+                    </div>
+                    <div class="mod-comments" style="padding:0">
+                        <div class="mod-commnets-poster feedClickCmd comment_default_inputentry" data-cmd="qz_reply" data-version="6" data-action="http://taotao.qq.com/cgi-bin/emotion_cgi_re_feeds" data-param="t1_source=&amp;t1_uin=3251831548&amp;t1_tid=fc02d3c16dd13060780d0200&amp;signin=&amp;sceneid=100" data-charset="utf-8" data-maxLength="" data-tuin="3251831548" data-config="1|1|1|1,b52,with_fwd,同时转发;0|1,taotaoact.qzone.qq.com,@InputReply|1,taotaoact.qzone.qq.com,@ClickReply|1,taotaoact.qzone.qq.com,commentPresentClick" data-tid="">
+                            <div class="comments-poster-bd comments-poster-default">
+                                <div class="comments-box" data-clicklog="comment">
+                                    <div class="textinput textinput-default bor2" contenteditable="true" alt="replybtn" placeholder="评论">
+                                        <a class="c_tx3" href="javascript:void(0);" alt="replybtn">评论</a>
+                                    </div>
+                                    <div class="mod-insert-img">
+                                        <a href="javascript:;" data-cmd="qz_quick_upload_img" class="btn-insert-img bg">
+                                            <i class="icon-camera-16"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="f-single f-s-s" id="fct_3251831548_4_0_1608721287_0_1">
+                <div class="f-single-head f-aside">
+                    <div class="f-adorn-top"></div>
+                    <div class="user-pto">
+                        <a href="http://user.qzone.qq.com/3251831548" target="_blank" class="user-avatar q_namecard f-s-a" link="nameCard_3251831548" data-clicklog="avatar">
+                            <img src="https://qlogo1.store.qq.com/qzone/3251831548/3251831548/50?1631763947">
+                        </a>
+                    </div>
+                    <div class="user-op">
+                        <a href="javascript:;" class="arrow-down" data-cmd="qz_opr_more" data-moreoperate="1">
+                            <i class="fui-icon icon-arrow-down"></i>
+                        </a>
+                    </div>
+                    <div class="user-info">
+                        <div class="f-nick">
+                            <a target="_blank" href="http://user.qzone.qq.com/3251831548" data-clicklog="nick" class="f-name q_namecard " link="nameCard_3251831548">黎云洪</a>
+                        </div>
+                        <div class="info-detail">
+                            <span class=" ui-mr8 state">2020年12月23日 19:01</span>
+                            <a href="javascript:;" data-cmd="qz_sign" class="f-sign-show state" title="我也要设置"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-single-content f-wrap">
+                    <div class="f-item f-s-i" id="feed_3251831548_4_0_1608721287_0_1" data-feedsflag="" data-iswupfeed="1" data-key="1608721286877V54gQ6i31DgoDb2bz1" data-specialtype="" data-extend-info="0_0_0_0_0_0_0|08009c8002024201|1000000000000000" data-functype="" data-hasfollowed="1">
+                        <div class="qz_summary wupfeed" id="hex_3251831548_4_0_1608721287_0_1">
+                            <i class="none" name="feed_data" data-bitmap="08009c8002024201" data-yybitmap="1000000000000000" data-vipstarbitmap="1100120000000c80" data-fkey="1608721286877V54gQ6i31DgoDb2bz1" data-tid="V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE" data-uin="3251831548" data-origfkey="" data-origtid="1608721286877" data-origuin="3251831548" data-subid="" data-totweet="" data-issignin="" data-source="" data-retweetcount="0" data-stat="RFi0wfVDmIOAbyNaLTAF7EKrc0lAbAc5yDSQ8cSl3!GBSziKbqMUK2qaXIrUx4q7uc4m1LuEhZnzk29uNZr2n6nuXVu6EuhenSD9CJCTnV7ccTc5rdQaqSoMIN!o4cbDq/tHkkWBzJ3bgIJ/5zkMlGzQ8HRgYZv02vx6b5HT1O3LDkXn9xwSE/JxO!4!Fec6tgOxOl4e5silT6TuOyKPztYGLBLu0okleuuWTbPcSy6GQ2UKOJYaNgMREnnpynQzKxCxXR6SrWTUfFwYV4C3MF9rK9IKy5S1lyI1AhQiY1Ur/SoRRpnawGcOZ9L760tj_" data-topicid="V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE_NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!_1608721286877_4" data-feedstype="100" data-abstime="1608721287" data-iswupfeed="1" data-platformid="52" data-batchid=1608721286877 data-accessright="1"></i>
+                            <div class="f-ct">
+                                <div class="f-info"></div>
+                                <div class="fui-txtimg fui-imgbox-row-wrap">
+                                    <div class="img-box img-box-row row-two">
+                                        <a class="img-item  " data-cmd="qz_popup" href="https://h5.qzone.qq.com/page/photo?init=photo.v7/common/viewer2/index&picKey=NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!&ownerUin=3251831548&appid=4&topicId=V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE_NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!_1608721286877_4&pre=http%3A%2F%2Fa1.qpic.cn%2Fpsc%3F%2FV54gQ6i31DgoDb2bz1xf49DLUy2zVfJE%2FruAMsa53pVQWN7FLK88i5g.cB74cAL0yXvpXjS2tE2tdCs9JNicAgdUtm**HUl9Q1RD0xv4uIMwEMjJVM.*KZsam.yKPUra*zUleFKdc3HE!%2Fm%26ek%3D1%26kp%3D1%26pt%3D0%26bo%3DOAQpBgAAAAABFyM!%26t%3D5%26tl%3D3%26vuin%3D768366296%26tm%3D1724853600%26dis_t%3D1724854194%26dis_k%3Db66c9d67f92c2990a659bd7015cdb68b%26sce%3D60-3-3%26rf%3D0-0&useqzfl=1&useinterface=1&noCloseBtn=0&inqq=1" class="  qz_ichotclick   img-two  " data-topicid="V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE" data-pickey="NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!" data-clicklog="pic" data-originurl="||" hotclickPath="0_appid_4_v8.pic_count_.pic_0" hotdomain="icv6act.qzone.qq.com" data-weishi_feedid="" data-version="2" data-param="3251831548|V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE|NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!|http://a1.qpic.cn/psc?/V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE/ruAMsa53pVQWN7FLK88i5g.cB74cAL0yXvpXjS2tE2tdCs9JNicAgdUtm**HUl9Q1RD0xv4uIMwEMjJVM.*KZsam.yKPUra*zUleFKdc3HE!/c&amp;ek=1&amp;kp=1&amp;pt=0&amp;bo=OAQpBgAAAAABFyM!&amp;t=5&amp;tl=3&amp;vuin=768366296&amp;tm=1724853600&amp;dis_t=1724854194&amp;dis_k=b66c9d67f92c2990a659bd7015cdb68b&amp;sce=60-2-2&amp;rf=0-0" data-src="/qzone/photo/zone/icenter_popup.html" data-width="0" data-height="0" data-type="popup" data-title="" data-config="" data-extendinfo1="" data-extendinfo2="" data-extendinfo3="" data-extendinfo4="" data-extendinfo11="">
+                                            <img src="http://a1.qpic.cn/psc?/V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE/ruAMsa53pVQWN7FLK88i5g.cB74cAL0yXvpXjS2tE2tdCs9JNicAgdUtm**HUl9Q1RD0xv4uIMwEMjJVM.*KZsam.yKPUra*zUleFKdc3HE!/c&amp;ek=1&amp;kp=1&amp;pt=0&amp;bo=OAQpBgAAAAABFyM!&amp;t=5&amp;tl=3&amp;vuin=768366296&amp;tm=1724853600&amp;dis_t=1724854194&amp;dis_k=b66c9d67f92c2990a659bd7015cdb68b&amp;sce=60-2-2&amp;rf=0-0" style="margin-left:0px;margin-top:-64px;height:407px;width:279px;" width='224' style="margin-top:-51px;"/>
+                                        </a>
+                                        <a class="img-item  " data-cmd="qz_popup" href="https://h5.qzone.qq.com/page/photo?init=photo.v7/common/viewer2/index&picKey=NR8AVjZiQ2dBek1qVXhPRE14TlRRNGhpUGpYNVJwRlJNIQcAcGhvdG9neg!!&ownerUin=3251831548&appid=4&topicId=V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE_NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!_1608721286877_4&pre=http%3A%2F%2Fa1.qpic.cn%2Fpsc%3F%2FV54gQ6i31DgoDb2bz1xf49DLUy2zVfJE%2FruAMsa53pVQWN7FLK88i5g.cB74cAL0yXvpXjS2tE2tdCs9JNicAgdUtm**HUl9Q1RD0xv4uIMwEMjJVM.*KZsam.yKPUra*zUleFKdc3HE!%2Fm%26ek%3D1%26kp%3D1%26pt%3D0%26bo%3DOAQpBgAAAAABFyM!%26t%3D5%26tl%3D3%26vuin%3D768366296%26tm%3D1724853600%26dis_t%3D1724854194%26dis_k%3Db66c9d67f92c2990a659bd7015cdb68b%26sce%3D60-3-3%26rf%3D0-0&useqzfl=1&useinterface=1&noCloseBtn=0&inqq=1" class="  qz_ichotclick   img-two  " data-topicid="V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE" data-pickey="NR8AVjZiQ2dBek1qVXhPRE14TlRRNGhpUGpYNVJwRlJNIQcAcGhvdG9neg!!" data-clicklog="pic" data-originurl="||" hotclickPath="0_appid_4_v8.pic_count_.pic_1" hotdomain="icv6act.qzone.qq.com" data-weishi_feedid="" data-version="2" data-param="3251831548|V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE|NR8AVjZiQ2dBek1qVXhPRE14TlRRNGhpUGpYNVJwRlJNIQcAcGhvdG9neg!!|http://a1.qpic.cn/psc?/V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE/ruAMsa53pVQWN7FLK88i5g.cB74cAL0yXvpXjS2tE2ujhbhAo2f4jnIkQVz8yHGLT1pyGRsJBwq1eBSh1S5MAtYVXadjR34*MMLcwzzANlo!/c&amp;ek=1&amp;kp=1&amp;pt=0&amp;bo=OAR5BgAAAAABF3M!&amp;t=5&amp;tl=3&amp;vuin=768366296&amp;tm=1724853600&amp;dis_t=1724854194&amp;dis_k=da027e080c1abe9450bb223751516d20&amp;sce=60-2-2&amp;rf=0-0" data-src="/qzone/photo/zone/icenter_popup.html" data-width="0" data-height="0" data-type="popup" data-title="" data-config="" data-extendinfo1="" data-extendinfo2="" data-extendinfo3="" data-extendinfo4="" data-extendinfo11="">
+                                            <img src="http://a1.qpic.cn/psc?/V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE/ruAMsa53pVQWN7FLK88i5g.cB74cAL0yXvpXjS2tE2ujhbhAo2f4jnIkQVz8yHGLT1pyGRsJBwq1eBSh1S5MAtYVXadjR34*MMLcwzzANlo!/c&amp;ek=1&amp;kp=1&amp;pt=0&amp;bo=OAR5BgAAAAABF3M!&amp;t=5&amp;tl=3&amp;vuin=768366296&amp;tm=1724853600&amp;dis_t=1724854194&amp;dis_k=da027e080c1abe9450bb223751516d20&amp;sce=60-2-2&amp;rf=0-0" style="margin-left:0px;margin-top:-74px;height:427px;width:279px;" width='224' style="margin-top:-59px;"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="f-reprint">
+                                    <p class="item">
+                                        <i class="fui-icon icon-print-phone"></i>
+                                        <span class="ui-mr8 state">
+                                                    来自 &nbsp;<a href="http://z.qzone.com?from=androidgrzxpl" target="_blank" class=" phone-style state">华为畅享9 Plus</a>
+                                                    &nbsp;
+                                                </span>
+                                    </p>
+                                    <p class="item state">
+                                        <i class="fui-icon icon-print-album"></i>
+                                        <a href="http://user.qzone.qq.com/3251831548/photo/V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE" target="_blank" style="cursor:pointer;">上传2张照片/视频到《手机相册》        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-single-foot">
+                    <div class="f-op-detail f-detail content-line">
+                        <p class="op-list">
+                            <a class="item qz_retweet_btn " href="javascript:;" data-cmd="qz_popup" data-version="4" data-isnewtype="1" data-type="ForwardingBox" data-src="/qzone/app/controls/forwardingBox/forwardingBoxFacade.js" data-clicklog="retweet">
+                                <i class="fui-icon icon-op-share"></i>
+                            </a>
+                            <span class="item-line"></span>
+                            &nbsp;
+                            <a href="javascript:;" data-version="6.3" data-cmd="qz_reply" data-link="1" data-clicklog="comment" class=" qz_btn_reply item ">
+                                <i class="fui-icon icon-op-comment"></i>
+                            </a>
+                            &nbsp;<span class="item-line"></span>
+                            <a class="item qz_like_btn_v3 " data-islike="0" data-likecnt="38" data-showcount="20" data-unikey="http://user.qzone.qq.com/3251831548/batchphoto/V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE/1608721286877" data-curkey="http://user.qzone.qq.com/3251831548/batchphoto/V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE/1608721286877" data-clicklog="like" href="javascript:;">
+                                <i class="fui-icon icon-op-praise"></i>
+                            </a>
+                        </p>
+                        <a href="javascript:;" class="state qz_feed_plugin" data-role="Visitor" data-config="4|33;V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE%7C1608721286877|3251831548" data-clicklog="visitor">浏览168次</a>
+                    </div>
+                    <div class="f-ang-t"></div>
+                    <div class="f-like-list f-like _likeInfo" likeinfo="38">
+                        <div class="icon-btn">
+                            <a href="javascript:;" data-islike="0" data-likecnt="38" data-showcount="38" data-unikey="http://user.qzone.qq.com/3251831548/batchphoto/V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE/1608721286877" data-curkey="http://user.qzone.qq.com/3251831548/batchphoto/V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE/1608721286877" data-clicklog="like" class="praise qz_like_prase">
+                                <i class="fui-icon icon-list-praise"></i>
+                            </a>
+                            <div class="bubble" style="display:none;">
+                                <div class="bd">+1</div>
+                                <b class="arrow arrow-down"></b>
+                            </div>
+                        </div>
+                        <div class="user-list">
+                            <a href="http://user.qzone.qq.com/1292271509" class="item q_namecard" target="_blank" link="nameCard_1292271509 des_1292271509">黄焕兰</a>
+                            、<a href="http://user.qzone.qq.com/593241898" class="item q_namecard" target="_blank" link="nameCard_593241898 des_593241898">上邪</a>
+                            、<a href="http://user.qzone.qq.com/870604561" class="item q_namecard" target="_blank" link="nameCard_870604561 des_870604561">୧⍤⃝魔এ᭄杰ꦿ星꧔</a>
+                            、<a href="http://user.qzone.qq.com/918360028" class="item q_namecard" target="_blank" link="nameCard_918360028 des_918360028">YX</a>
+                            、<a href="http://user.qzone.qq.com/987469571" class="item q_namecard" target="_blank" link="nameCard_987469571 des_987469571">23.</a>
+                            、<a href="http://user.qzone.qq.com/1015637904" class="item q_namecard" target="_blank" link="nameCard_1015637904 des_1015637904">扎扎怪.</a>
+                            、<a href="http://user.qzone.qq.com/1020185450" class="item q_namecard" target="_blank" link="nameCard_1020185450 des_1020185450">辛识</a>
+                            、<a href="http://user.qzone.qq.com/1099353402" class="item q_namecard" target="_blank" link="nameCard_1099353402 des_1099353402">*♡⃛白衣青衫</a>
+                            、
+                            <a href="http://user.qzone.qq.com/1137452389" class="item q_namecard" target="_blank" link="nameCard_1137452389 des_1137452389">
+                                <img src="http://qzonestyle.gtimg.cn/qzone/em/e328081.gif" title=""/>
+                            </a>
+                            、<a href="http://user.qzone.qq.com/1207224970" class="item q_namecard" target="_blank" link="nameCard_1207224970 des_1207224970">m</a>
+                            、<a href="http://user.qzone.qq.com/1334717650" class="item q_namecard" target="_blank" link="nameCard_1334717650 des_1334717650">37.2°C</a>
+                            、
+                            <a href="http://user.qzone.qq.com/1434762964" class="item q_namecard" target="_blank" link="nameCard_1434762964 des_1434762964">
+                                YONG~<img src="http://qzonestyle.gtimg.cn/qzone/em/e328051.gif" title=""/>
+                                <img src="http://qzonestyle.gtimg.cn/qzone/em/e328051.gif" title=""/>
+                            </a>
+                            、<a href="http://user.qzone.qq.com/1443701431" class="item q_namecard" target="_blank" link="nameCard_1443701431 des_1443701431">销烟弥蛮</a>
+                            、<a href="http://user.qzone.qq.com/1719347282" class="item q_namecard" target="_blank" link="nameCard_1719347282 des_1719347282">俗人</a>
+                            、<a href="http://user.qzone.qq.com/1911862543" class="item q_namecard" target="_blank" link="nameCard_1911862543 des_1911862543">小奈</a>
+                            、<a href="http://user.qzone.qq.com/2011476235" class="item q_namecard" target="_blank" link="nameCard_2011476235 des_2011476235">ৡ烟花易冷ོꦿ࿐</a>
+                            、
+                            <a href="http://user.qzone.qq.com/2132376694" class="item q_namecard" target="_blank" link="nameCard_2132376694 des_2132376694">
+                                <img src="http://qzonestyle.gtimg.cn/qzone/em/e328171.gif" title=""/>
+                                JH &amp;ling<img src="http://qzonestyle.gtimg.cn/qzone/em/e258158.gif" title=""/>
+                            </a>
+                            、<a href="http://user.qzone.qq.com/2276091889" class="item q_namecard" target="_blank" link="nameCard_2276091889 des_2276091889">居住在玫瑰星云的浪漫间谍</a>
+                            、<a href="http://user.qzone.qq.com/2291493013" class="item q_namecard" target="_blank" link="nameCard_2291493013 des_2291493013">多喝热水少喝冰</a>
+                            、<a href="http://user.qzone.qq.com/2312090257" class="item q_namecard" target="_blank" link="nameCard_2312090257 des_2312090257">Lemon</a>
+                            等<span class="f-like-cnt">38</span>
+                            人觉得很赞
+                        </div>
+                    </div>
+                    <div class="mod-comments" style="padding:0">
+                        <div class="comments-list ">
+                            <ul>
+                                <li class="comments-item bor3" data-type="commentroot" data-tid="723784364" data-uin="1099353402" data-nick="*♡⃛白衣青衫" data-who="1">
+                                    <div class="comments-item-bd">
+                                        <div class="single-reply">
+                                            <div class="ui-avatar">
+                                                <a href="http://user.qzone.qq.com/1099353402" target="_blank">
+                                                    <img class="q_namecard" link="nameCard_1099353402 des_1099353402" alt="*♡⃛白衣青衫" src="http://qlogo3.store.qq.com/qzone/1099353402/1099353402/30?1524196634"/>
+                                                </a>
+                                            </div>
+                                            <div class="comments-content">
+                                                <a class="nickname name c_tx q_namecard" link="nameCard_1099353402" target="_blank" href="http://user.qzone.qq.com/1099353402">*♡⃛白衣青衫</a>
+                                                &nbsp;: 有丝分裂，无丝分裂，减数分裂
+                                                <div class="comments-op">
+                                                    <span class=" ui-mr10 state">2020年12月23日 19:08</span>
+                                                    <a class="act-reply none" href="javascript:;" data-cmd="qz_reply" data-version="6.4" data-action="http://photo.qq.com/cgi-bin/common/cgi_add_icreply" data-param="oweruin=3251831548&amp;albumid=V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE&amp;lloc=NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!&amp;sloc=NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!&amp;refer=qzone&amp;reqfrom=801&amp;zz=0&amp;cmtid=723784364&amp;batchId=1608721286877&amp;cmtType=4&amp;picname=2020-12-23" data-charset="GB" data-tuin="" data-config="{config:&#39;1|1|0|0|0|0|0&#39;,targetUserInfo:{id:1099353402,nick:&#39;╭♡白衣青衫&#39;,who:1,auto:1}}">
+                                                        <b class="hide-clip">回复</b>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comments-list mod-comments-sub">
+                                            <ul>
+                                                <li class="comments-item bor3" data-type="replyroot" data-tid="1608723415" data-uin="3251831548" data-nick="黎云洪" data-who="1">
+                                                    <div class="comments-item-bd">
+                                                        <div class="single-reply">
+                                                            <div class="ui-avatar">
+                                                                <a href="http://user.qzone.qq.com/3251831548" target="_blank">
+                                                                    <img class="q_namecard" link="nameCard_3251831548 des_3251831548" alt="黎云洪" src="http://qlogo1.store.qq.com/qzone/3251831548/3251831548/30?1631763947"/>
+                                                                </a>
+                                                            </div>
+                                                            <div class="comments-content">
+                                                                <a class="nickname name c_tx q_namecard" link="nameCard_3251831548" target="_blank" href="http://user.qzone.qq.com/3251831548">黎云洪</a>
+                                                                &nbsp;回复<a class="nickname name c_tx q_namecard" link="nameCard_1099353402" target="_blank" href="http://user.qzone.qq.com/1099353402">*♡⃛白衣青衫</a>
+                                                                &nbsp;: 没涉及<img src="http://qzonestyle.gtimg.cn/qzone/em/e10289.gif" title=""/>
+                                                                <div class="comments-op">
+                                                                    <span class=" ui-mr10 state">2020年12月23日 19:36</span>
+                                                                    <a class="act-reply none" href="javascript:;" data-cmd="qz_reply" data-version="6.4" data-action="http://photo.qq.com/cgi-bin/common/cgi_add_icreply" data-param="oweruin=3251831548&amp;albumid=V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE&amp;lloc=NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!&amp;sloc=NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!&amp;refer=qzone&amp;reqfrom=801&amp;zz=0&amp;cmtid=723784364&amp;batchId=1608721286877&amp;cmtType=4&amp;picname=2020-12-23" data-charset="GB" data-tuin="" data-config="{config:&#39;1|1|0|0|0|0|0&#39;,targetUserInfo:{id:3251831548,nick:&#39;&#39;,who:1,auto:1}}">
+                                                                        <b class="hide-clip">回复</b>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mod-commnets-poster feedClickCmd comment_default_inputentry" data-cmd="qz_reply" data-version="6" data-action="http://photo.qq.com/cgi-bin/common/cgi_add_piccomment" data-param="uin=3251831548&amp;albumid=V54gQ6i31DgoDb2bz1xf49DLUy2zVfJE&amp;forumindex=0&amp;lloc=NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!&amp;sloc=NR8AVjZiQ2dBek1qVXhPRE14TlRRNGh5UGpYM0t4RnhNIQcAcGhvdG9neg!!&amp;privacy=1&amp;refer=qzone&amp;reqfrom=801&amp;batchId=1608721286877&amp;cmtType=4&amp;zz=0" data-charset="GB" data-maxLength="" data-tuin="3251831548" data-config="1|1|0|0|0|0|0" data-tid="">
+                            <div class="comments-poster-bd comments-poster-default">
+                                <div class="comments-box" data-clicklog="comment">
+                                    <div class="textinput textinput-default bor2" contenteditable="true" alt="replybtn" placeholder="评论">
+                                        <a class="c_tx3" href="javascript:void(0);" alt="replybtn">评论</a>
+                                    </div>
+                                    <div class="mod-insert-img">
+                                        <a href="javascript:;" data-cmd="qz_quick_upload_img" class="btn-insert-img bg">
+                                            <i class="icon-camera-16"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="check-more update-more bor" id="ICFeedsTipMsg" style="cursor:pointer;display:none;">
+        <p class="b-inline data_is_loading none">数据加载中，请稍候...</p>
+        <p class="b-inline data_no_more none">没有更多动态</p>
+        <p class="b-inline data_btn_more">
+            <b>查看更多动态</b>
+        </p>
+    </div>
+    <div id="goProfileFeedsLink" style="display:none;" class="check-more update-more bor">
+        <a href="javascript:;" class="b-inline c_tx" onclick="QZONE.FP.toApp('/profile/feeds');return false;">更多动态信息</a>
+    </div>
+</div>
+<div id="GRZOPTParserContainer" style="display:none"></div>
+<script type="text/javascript">
+    var ver = top.g_V || {};
+    ver.qz = ver.qz || "_2.1.31";
+    ver.sea = ver.sea || "2.0.0";
+    ver.jq = ver.jq || "2.0.0";
+    ver.proto = window.location.protocol;
+    try {
+        ver.proto = top.g_cdn_proto || window.location.protocol;
+    } catch (err) {
+    }
+
+    document.write([_jsBegin, ver.proto, '//' + g_sid + 'ac/qzone/qzfl/qzfl', ver.qz, ".js", _jsEnd, _jsBegin, ver.proto, '//' + g_sid + 'ac/lib/seajs/sea-', ver.sea, ".js", _jsEnd, _jsBegin, ver.proto, '//' + g_sid + 'qzone/v8/core/seajs_config.js', _jsEnd, _jsBegin, window.location.protocol, '//tajs.qq.com/stats?sId=53225730', _jsEnd].join(""));
+</script>
+<script type="text/javascript">
+    setTimeout(function() {
+        var list = QZFF_M_img_ribr;
+        for (var i = list.length; i--; ) {
+            list[i].src = "/ac/b.gif?delay";
+        }
+    }, 0);
+
+    if (G_Param.DEFAULT_FEEDS_CGI.indexOf("feeds_ic_unaided_xml") > -1) {
+        G_Param.DEFAULT_FEEDS_CGI = window.location.protocol + "//" + g_rd + "/cgi-bin/feeds/feeds_html_act_all";
+    }
+    if (G_Param.DEFAULT_FEEDS_CGI.indexOf("feeds_ic_interactive_xml") > -1) {
+        G_Param.DEFAULT_FEEDS_CGI = window.location.protocol + "//" + g_rd + "/cgi-bin/feeds/feeds_html_interactive";
+    }
+    if (G_Param.hasGoProfileFeedsLink) {
+        var d = document.getElementById("goProfileFeedsLink");
+        if (d) {
+            d.style.display = "";
+        }
+    } else {
+        document.getElementById("ICFeedsTipMsg").style.display = "";
+    }
+
+    document.write(([_jsBegin, ver.proto, '//' + g_sid + 'qzone/v5/namecardv2.js', _jsEnd]).join(""));
+
+    function waitClientLib() {
+        if (top.QZONE && top.QZONE.FrontPage) {
+            seajs.use(ver.proto + '//' + g_sid + 'ac/qzfl/appclientlib.js', onClientLibOK);
+        } else {
+            setTimeout(waitClientLib, 100);
+        }
+    }
+    waitClientLib();
+
+    function onClientLibOK() {
+        seajs.use(['v8/engine/cpu', 'v8/ic/feeds', 'v8/ic/home_more_feeds', 'v8/ic/speed'], function(cpujs, Feeds, HomeMoreFeeds, speed) {
+            cpujs.bootstrap();
+            this.cpujs = cpujs;
+            /*暴露全局接口*/
+            /*初始化feeds*/
+            /*interface clientlib映射interface完成*/
+            Feeds.bootstrap({
+                sence: "home_personal",
+                feedsData: _feedsdata.data
+            });
+            /*启动拉取更多feeds的逻辑*/
+            HomeMoreFeeds.bootstrap();
+
+            var $body = $j("body");
+            function onOpacityChange(_, newOpacity) {
+                var newOpacityClassName = "mode_bg_opacity" + newOpacity;
+                $body.removeClass("mode_bg_opacity" + $body.data("opacity")).addClass(newOpacityClassName).data("opacity", newOpacity);
+            }
+
+            function onStyleChange(evt, dataObj) {
+                if (dataObj && dataObj.styleid) {
+                    var styleCssHref = window.location.protocol + '//' + g_sid + 'aoi/skin/' + dataObj.styleid + '.css';
+                    $j("#qz_skin_style").attr("href", styleCssHref);
+                }
+            }
+
+            top.QZONE.qzEvent.addEventListener('QZ_CUSTOM_OPACITY_CHANGE', onOpacityChange);
+            top.QZONE.qzEvent.addEventListener('QZ_CUSTOM_CHANGE_STYLE', onStyleChange);
+            $j(window).bind("beforeunload", function() {
+                top.QZONE.qzEvent.removeEventListener('QZ_CUSTOM_CHANGE_OPACITY', onOpacityChange);
+                top.QZONE.qzEvent.removeEventListener('QZ_CUSTOM_CHANGE_STYLE', onStyleChange);
+            });
+
+            if (speed && speed.report) {
+                if (parent) {
+                    var parentHref = parent.location.href, pageName, g_point0;
+                    if (parentHref.indexOf('profile/index.html') > -1) {
+                        pageName = 'profile';
+                        g_point0 = top.window.g_point0_profile;
+                    } else if (parentHref.indexOf('/main') > -1) {
+                        pageName = 'main';
+                        g_point0 = top.window.g_NowTime * 1000;
+                    } else {
+                        return;
+                    }
+
+                    if (g_point0) {
+                        speed.report({
+                            points: {
+                                siteName: top.location.host,
+                                pageName: pageName,
+                                24: Date.now() - g_point0
+                            },
+                            appid: "20141",
+                            appkey: "c373ba4a1ce77b27601e887e9f8eb3f4"
+                        });
+                    }
+                }
+            }
+        });
+
+    }
+    function bodyonload() {
+        QZONE.namecard.init("host_home_feeds");
+    }
+</script>
+</body>
+</html>
