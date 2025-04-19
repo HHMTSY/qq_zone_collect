@@ -42,7 +42,7 @@ public class MainService {
     private static final String qqNum = "";
 //    https://user.qzone.qq.com/proxy/domain/ic2.qzone.qq.com/cgi-bin/feeds/feeds3_html_more 接口携带
     private static final String g_tk = "";
-    private static final String cookie = "ptcz=307476e512b69f59ac1c7d3bfbb08476178fe59fa4f7dfb32066651f5c7efef7; pgv_pvid=6838205472; _qimei_q36=; _qimei_h38=19c5ba4595a22d4c67897d170200000ed18112; fqm_pvqid=5d418328-8bce-488c-9f3b-2372b98dc1ff; qq_domain_video_guid_verify=08c749c9636ac4f6; _qimei_fingerprint=793b9b06cb7489d65a7c5c429fabe44d; QZ_FE_WEBP_SUPPORT=1; RK=SGXxKLMTFf; eas_sid=u1o7T3y9o366n3e423m9s5Q4J4; qz_screen=1707x1067; __Q_w_s__QZN_TodoMsgCnt=1; uin=o0768366296; skey=@QeQySbNq4; p_uin=o0768366296; pt4_token=q4LuFio1XIT-P1ej6TV9x9BVkQdJFT5M5zeMhK-QCkY_; p_skey=yN0J3ZUxXmvZUh6x-YVDnsjKtLyvCG1O9FXXVk53r4A_; Loading=Yes; pgv_info=ssid=s8228696332; cpu_performance_v8=45";
+    private static final String cookie = "";
     public  List<MyFriend> getFriends() {
         String url = "https://user.qzone.qq.com/proxy/domain/r.qzone.qq.com/cgi-bin/tfriend/friend_show_qqfriends.cgi" +
                 "?uin=" + qqNum +
